@@ -1,0 +1,17 @@
+{
+    "name": "Demo extension",
+    "version": "0.0.0.1",
+    "manifest_version": 2,
+    "description": "A Chromium extension to demo an extension.",
+    "icons": {
+        "16": "icons/date_a_live_16x16.png",
+        "32": "icons/date_a_live_32x32.png",
+        "48": "icons/date_a_live_48x48.png",
+        "128": "icons/date_a_live_128x128.png"
+    },
+    "browser_action": {
+        "default_popup": "popup/popup.html"
+    },
+    "content_security_policy": "script-src 'self' https://unpkg.com/onsenui/css/onsen-css-components.min.css; object-src 'self'"
+    
+}
