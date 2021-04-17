@@ -1,8 +1,14 @@
-body{
-    background-color: black;
+.spinspinspin {
+    animation-name: spin;
+    animation-duration: 1.0s;
+    animation-iteration-count: infinite;
 }
-p{
-    margin-top: 0.2rem;
-    color:white;
-    text-align: center;
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(1440deg);
+    }
 }
