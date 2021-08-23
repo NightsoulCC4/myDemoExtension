@@ -1,24 +1,23 @@
 {
-    "name": "mydemoExtension",
-    "description": "my ext that added some detect.",
-    "version": "0.1.1",
+    "name": "mydemoExtension2",
+    "description": "my ext",
+    "version": "0.1.2",
     "manifest_version": 2,
     "icons":{
-        "16": "icons/date_a_live_16x16.png",
-        "32": "icons/date_a_live_32x32.png",
-        "48": "icons/date_a_live_48x48.png",
-        "128": "icons/date_a_live_128x128.png"
+        "16": "./GazeGuard_16x16.png",
+        "32": "./date_a_live_32x32.png",
+        "48": "./date_a_live_48x48.png",
+        "128": "./date_a_live_128x128.png"
     },
     "background":{
         "scripts": ["./background.js"]
     },
     "options_page": "./options.html",
     "browser_action": {
-        "default_popup": "popup/popup.html"
+        "default_popup": "popup.html"
     },
     "permissions": [
-        "tabs",
-        "https://www.google.com/*",
-        "edge://settings/passwords"
+        "<all_urls>",
+        "tabs"
     ]
 }
