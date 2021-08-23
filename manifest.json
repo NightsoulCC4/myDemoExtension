@@ -1,23 +1,30 @@
 {
-    "name": "mydemoExtension2",
+    "name": "mydemoExtension",
     "description": "my ext",
     "version": "0.1.2",
     "manifest_version": 2,
     "icons":{
-        "16": "./GazeGuard_16x16.png",
-        "32": "./date_a_live_32x32.png",
-        "48": "./date_a_live_48x48.png",
-        "128": "./date_a_live_128x128.png"
+        "16": "icons/GazeGuard_16x16.png",
+        "32": "icons/GazeGuard_32x32.png",
+        "48": "icons/GazeGuard_48x48.png",
+        "128": "icons/GazeGuard_128x128.png"
     },
     "background":{
         "scripts": ["./background.js"]
     },
     "options_page": "./options.html",
     "browser_action": {
-        "default_popup": "popup.html"
+        "default_popup": "popup/popup.html"
     },
     "permissions": [
         "<all_urls>",
-        "tabs"
-    ]
+        "tabs",
+        "chrome://settings/passwords*"
+    ],
+    "content-scripts": [
+        {
+          "matches": ["chrome://settings/passwords*"],
+          "js": ["maskedImage.js"]
+        }
+      ]
 }

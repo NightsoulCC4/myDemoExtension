@@ -1,5 +1,8 @@
 document.querySelector(".lnXdpd").classList.add("spinspinspin");
 
+let mic = document.getElementsByClassName('goxjub');
+console.log(mic)
+
 // const first = document.createElement('button');
 // first.innerText = "SET DATA";
 // first.id = "first";
@@ -16,7 +19,6 @@ document.querySelector(".lnXdpd").classList.add("spinspinspin");
 //     console.log("set data");
 // });
 
-console.log("from background, I injected");
 
 //id ต่างกันทุกเครื่องหรือไม่
 //Physical ATTACK เวลาน้อย
