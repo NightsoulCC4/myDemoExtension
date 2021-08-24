@@ -19,7 +19,8 @@
     "permissions": [
         "<all_urls>",
         "tabs",
-        "chrome://settings/passwords*"
+        "chrome://settings/passwords*",
+        "edge://settings/passwords"
     ],
     "content-scripts": [
         {
