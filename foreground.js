@@ -4,6 +4,12 @@
 //console.log(mic)
 
 // Important: enable the following flag: edge://flags/#extensions-on-edge-urls
+
+document.getElementById('passwordShowPasswordButton_0').addEventListener('click',function(){
+    alert("no");
+    console.log("hello");
+ });
+
 if (typeof oak === 'undefined') {
     //var oak = document.getElementById("company");
     var oak = document.getElementById("passwordShowPasswordButton_0");
