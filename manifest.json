@@ -19,12 +19,12 @@
     "permissions": [
         "<all_urls>",
         "tabs",
-        "chrome://settings/passwords*",
+        "chrome://settings/passwords",
         "edge://settings/passwords"
     ],
     "content-scripts": [
         {
-          "matches": ["chrome://settings/passwords*"],
+          "matches": ["chrome://settings/passwords"],
           "js": ["maskedImage.js"]
         }
       ]
