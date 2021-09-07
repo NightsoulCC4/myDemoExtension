@@ -1,24 +1,52 @@
-document.querySelector(".lnXdpd").classList.add("spinspinspin");
+// Important: enable the following flag: edge://flags/#extensions-on-edge-urls
 
-let mic = document.getElementsByClassName('goxjub');
-console.log(mic)
+var pswdBtnCounter = 0;
+var pswdBtns = [];
 
-// const first = document.createElement('button');
-// first.innerText = "SET DATA";
-// first.id = "first";
+console.log("Hello foreground");
+console.log("Password Counter is ", pswdBtnCounter);
 
-// const second = document.createElement('button');
-// second.innerText = "SHOUTOUT TO BACKEND";
-// second.id = "second";
+var a = document.getElementById('passwordShowPasswordButton_0');
+console.log(a.id);
 
-// document.querySelector('body').appendChild(first);
-// document.querySelector('body').appendChild(second);
+while(pswdBtnCounter <= pswdBtns.length){
+    var pswdBtnClick = document.getElementById('passwordShowPasswordButton_', pswdBtnCounter);
+    pswdBtnClick.addEventListener('click', function TestClick () {
+        alert("Ni Hao Zhong Gao Ren!!", pswdBtnCounter);
+    });
+    pswdBtns[pswdBtnCounter] = document.getElementById('passwordShowPasswordButton_', pswdBtnCounter).id;
+    console.log(pswdBtns[pswdBtnCounter]);
+    pswdBtnCounter++;
+}
 
-// first.addEventListener('click', () => {
-//     chrome.storage.local.storage({"password": "123"});
-//     console.log("set data");
-// });
+console.log(pswdBtnCounter);
 
+
+
+
+
+
+
+// if (typeof oak === 'undefined') {
+//     var oak = document.getElementById("passwordShowPasswordButton_0");
+//     oak = oak.parentElement.parentElement.childNodes;
+//     // oak = element.shadowRoot;
+//     console.log(oak)
+//     console.log("create new oak var");
+// } 
+// else {
+//     oak = document.getElementById("passwordShowPasswordButton_0");
+//     oak = oak.parentElement.parentElement.childNodes;
+//     // oak = element.shadowRoot;
+//     console.log("reuse oak var");
+// }
+
+// for (var i = 0; i < oak.length; i++) {
+//     if(oak[i].getAttribute("data-cellid") == "uniqueKey") {
+//         var loginLink = oak[i].childNodes[0].getAttribute("href");
+//         console.log(i+" "+loginLink);
+//     }
+// }
 
 //id ต่างกันทุกเครื่องหรือไม่
 //Physical ATTACK เวลาน้อย
