@@ -1,15 +1,42 @@
 // Important: enable the following flag: edge://flags/#extensions-on-edge-urls
 
-function passwordProtected(pswdBtn, hrefList){
-    alert("You are in dangerous on "+ pswdBtn.title);
-    console.log("Password Button = ", pswdBtn ,"and href = ", hrefList)
-    console.log("You have been hacked in ", pswdBtn.title, "at", pswdBtn.id);
+var pswdBtns = [];
+let hrefLists = [];
+var userLists = [];
+var data = {};
+var i;
+
+function readUUID(){
+    var navigator_info = window.navigator;
+    var screen_info = window.screen;
+    var uid = navigator_info.mimeTypes.length;
+    uid += navigator_info.userAgent.replace(/\D+/g, '');
+    uid += navigator_info.plugins.length;
+    uid += screen_info.height || '';
+    uid += screen_info.width || '';
+    uid += screen_info.pixelDepth || '';
+    // console.log(uid);
+    return uid;
 }
 
-var pswdBtns = [];
-var hrefLists = [];
+function passwordProtected(pointerList){
 
-console.log("Password button list = ", pswdBtns);
+    const date = new Date();
+    const uid = readUUID();
+
+    alert("You are in dangerous on \'"+ pointerList.title + "\' row = " + pointerList.id.slice(20));
+    // console.log("You have been hacked in ", pswdBtn.title, "at", pswdBtn.id, "when", date, "on", uid);
+    data = {
+        "Webtitle": pointerList.href,
+        "Title": pointerList.title,
+        "Time": date.toString(),
+        "UUID": uid
+    }
+    console.log(data)
+    // module.exports = { data };
+}
+
+/* console.log("Password button list = ", pswdBtns); */
 
 //This function made for collect each id in passwordShowPasswordButton
 for(i = 0; i<=pswdBtns.length; i++){
@@ -21,23 +48,24 @@ for(i = 0; i<=pswdBtns.length; i++){
         pswdBtns[i] = document.querySelector("#passwordShowPasswordButton_"+ i);
         // pswdBtns[i].addEventListener('click', passwordProtected(hrefLists[i].href, hrefLists[i].title));
         pswdBtns[i].addEventListener('click', passwordProtected.bind(pswdBtns[i], hrefLists[i]));
-        console.log(pswdBtns[i].id); /* passwordButton VARCHAR(60) */
+        // console.log(pswdBtns[i].id); /* passwordButton VARCHAR(60) */
         // console.log(pswdBtns[i]);
         // console.log(i);
     }
-    console.log(hrefLists[i]);
     console.log(hrefLists[i].title); /* Title VARCHAR(30) */
     console.log(hrefLists[i].href); /* Website VARCHAR(50) */
 }
 
-// pswdBtns[i] = document.getElementById("passwordShowPasswordButton_"+ i).addEventListener('click', function passwordProtected () {
-//     alert("No", pswdBtns[i].id, "is in dangerous.");
-// });
-    // var pswdBtnClick = document.getElementById('passwordShowPasswordButton_', pswdBtnCounter);
-    // pswdBtnClick.addEventListener('click', function TestClick () {
-    //     alert("Ni Hao Zhong Gao Ren!!", pswdBtnCounter);
-    // });
-
+// function writeUserData(dataId, time, title, uuid, webtitle) {
+//     const db = getDatabase();
+//     set(ref(db, dataId), {
+//       Time : time,
+//       Title : title,
+//       UUID : uuid,
+//       Webtitle: webtitle
+//     });
+//     console.log("writed")
+//   }
 // if (typeof oak === 'undefined') {
 //     var oak = document.getElementById("passwordShowPasswordButton_0");
 //     oak = oak.parentElement.parentElement.childNodes;
@@ -59,9 +87,3 @@ for(i = 0; i<=pswdBtns.length; i++){
 //         console.log(oak.length);
 //     }
 // }
-
-// var pswdBtnClick = document.getElementById('passwordShowPasswordButton_0');
-//     pswdBtnClick.addEventListener('click', function TestClick () {
-//         alert("Ni Hao Zhong Gao Ren!!");
-//     });
-
