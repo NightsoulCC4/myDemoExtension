@@ -13,10 +13,6 @@
         "page": "./views/background.html",
         "persistent": false
     },
-    "foreground":{
-        "page": "./views/foreground.html",
-        "persistent": false
-    },
     "options_page": "./options.html",
     "browser_action": {
         "default_popup": "./popup/popup.html"

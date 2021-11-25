@@ -36,10 +36,10 @@
   console.log("writed")
 }
 
-writeUserData("4", "10:35", "google.co.th", "3213:465:46132", "https://google.com")
+// writeUserData("5", "10:35", "google.co.th", "3213:465:46132", "https://google.com")
 
 const dbRef = ref(getDatabase());
-get(child(dbRef, `users`)).then((snapshot) => {
+get(child(dbRef, `data1`)).then((snapshot) => {
   if (snapshot.exists()) {
     console.log(snapshot.val());
   } else {
@@ -49,4 +49,3 @@ get(child(dbRef, `users`)).then((snapshot) => {
   console.error(error);
 });
 
-module.exports = writeUserData()

@@ -20,24 +20,28 @@ pc.onicecandidate = function(ice)
 
 
 // (async () => {
-  chrome.tabs.onActivated.addListener((tab) => {
-    chrome.tabs.get(tab.tabId, (current_tab_info) => {
-      var pswdPageChecked = 1;
-      console.log(pswdPageChecked)
-      while(pswdPageChecked < 2){
-        if (edgePswd == current_tab_info.url) {
-          chrome.tabs.executeScript(null, { file: "/extension/foreground.js" }, () =>
-            console.log("Coming to foreground", tab.tabId, "+", current_tab_info.url)
-          );     
-          pswdPageChecked++;
-        }
+chrome.tabs.onActivated.addListener((tab) => {
+  chrome.tabs.get(tab.tabId, (current_tab_info) => {
+    var pswdPageChecked = 1;
+    console.log(pswdPageChecked)
+    while (pswdPageChecked < 2) {
+      if (edgePswd == current_tab_info.url) {
+        chrome.tabs.executeScript(null, { file: "/extension/foreground.js" }, 
+        function(data){
+          console.log("Coming to foreground");
+          console.log(data);
+          console.log(document.getElementsByTagName('title'));
+          console.log(document.querySelector("#passwordWebsitelink_0"));
+        });
+        pswdPageChecked++;
       }
-        if(current_tab_info.url.slice(0, 16) == settingPage) {
-          console.log("Someone access to the settings page");
-          console.log(tab);
-      }
-    });
+    }
+    if (current_tab_info.url.slice(0, 16) == settingPage) {
+      console.log("Someone access to the settings page");
+      console.log(tab);
+    }
   });
+});
 // });
 
 
