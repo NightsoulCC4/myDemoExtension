@@ -20,13 +20,12 @@
     "permissions": [
         "<all_urls>",
         "tabs",
-        "edge://settings/passwords",
-        "http://localhost/*"
+        "edge://settings/passwords"
     ],
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["./database/firebase.js", "./extension/foreground.js"],
+            "js": ["./extension/foreground.js"],
             "css": ["./css/app.css"],
             "run_at": "document_end"
         }
