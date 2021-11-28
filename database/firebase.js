@@ -25,7 +25,7 @@
 
  console.log("connect success")
 
- function writeUserData(dataId, time, title, uuid, webtitle) {
+ export async function writeUserData(dataId, time, title, uuid, webtitle) {
   const db = getDatabase();
   set(ref(db, dataId), {
     Time : time,
@@ -35,8 +35,6 @@
   });
   console.log("writed")
 }
-
-// writeUserData("5", "10:35", "google.co.th", "3213:465:46132", "https://google.com")
 
 const dbRef = ref(getDatabase());
 get(child(dbRef, `data1`)).then((snapshot) => {
@@ -48,4 +46,3 @@ get(child(dbRef, `data1`)).then((snapshot) => {
 }).catch((error) => {
   console.error(error);
 });
-

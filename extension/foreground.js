@@ -19,8 +19,7 @@ function readUUID(){
     return uid;
 }
 
-function passwordProtected(pointerList){
-
+async function passwordProtected(pointerList){
     const date = new Date();
     const uid = readUUID();
 
@@ -31,7 +30,8 @@ function passwordProtected(pointerList){
         "Time": date.toString(),
         "UUID": uid
     }
-    console.log(data)
+    console.log("foreground = ", data);
+    chrome.runtime.sendMessage(data);
 }
 
 console.log("Start loop")
@@ -39,28 +39,13 @@ console.log("Start loop")
 for(i = 0; i<=pswdBtns.length; i++){
     if(document.querySelector("#passwordShowPasswordButton_"+ i) == null){
         console.log("This is your limit!!");
-        break;
     }
     else{
         hrefLists[i] = document.querySelector("#passwordWebsitelink_"+ i);
         pswdBtns[i] = document.querySelector("#passwordShowPasswordButton_"+ i);;
-        pswdBtns[i].addEventListener('click', passwordProtected.bind(pswdBtns[i], hrefLists[i]));
+        data = pswdBtns[i].addEventListener('click', passwordProtected.bind(pswdBtns[i], hrefLists[i]));
         console.log(hrefLists[i].title);  /* Title VARCHAR(30) */
         console.log(hrefLists[i].href);  /* Website VARCHAR(50) */
     }
 }
-
-console.log("End")
-
-data
-
-// function writeUserData(dataId, time, title, uuid, webtitle) {
-//     const db = getDatabase();
-//     set(ref(db, dataId), {
-//       Time : time,
-//       Title : title,
-//       UUID : uuid,
-//       Webtitle: webtitle
-//     });
-//     console.log("writed")
-//   }
+console.log("End");

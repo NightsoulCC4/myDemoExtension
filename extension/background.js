@@ -1,48 +1,76 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-analytics.js";
+ import { getDatabase, ref, set, onValue, child, get } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-database.js"
+
 const edgePswd = "edge://settings/passwords";
 const settingPage = "edge://settings/";
 
-// get local ip address
-/* window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome
-var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};      
-pc.createDataChannel('');//create a bogus data channel
-pc.createOffer(pc.setLocalDescription.bind(pc), noop);// create offer and set local description
-pc.onicecandidate = function(ice)
-{
- if (ice && ice.candidate && ice.candidate.candidate)
- {
-  var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
-  console.log('my IP: ', myIP);   
-  pc.onicecandidate = noop;
- }
-}; */
+const firebaseConfig = {
+  apiKey: "AIzaSyDQf1OQp0Sn_qBhiznI5zFhZ7o1l1zbRzI",
+  authDomain: "gazeguard-a4d92.firebaseapp.com",
+  databaseURL: "https://gazeguard-a4d92-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  projectId: "gazeguard-a4d92",
+  storageBucket: "gazeguard-a4d92.appspot.com",
+  messagingSenderId: "204843954742",
+  appId: "1:204843954742:web:dc752050f318438a615e97",
+  measurementId: "G-9M6E3SKQGJ"
+};
 
-// get public ip address
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getDatabase();
 
+async function writeUserData(data) {
+  const db = getDatabase();
+  set(ref(db), {
+    Time : data.Time,
+    Title : data.Title,
+    UUID : data.UUID,
+    Webtitle: data.Webtitle
+  });
+  console.log("writed")
+}
 
-// (async () => {
-chrome.tabs.onActivated.addListener((tab) => {
-  chrome.tabs.get(tab.tabId, (current_tab_info) => {
+const dbRef = ref(getDatabase());
+get(child(dbRef, `data1`)).then((snapshot) => {
+  if (snapshot.exists()) {
+    console.log(snapshot.val());
+  } else {
+    console.log("No data available");
+  }
+}).catch((error) => {
+  console.error(error);
+});
+
+console.log("connect success")
+
+chrome.tabs.onActivated.addListener(async (tab) => {
+  await chrome.tabs.get(tab.tabId, (current_tab_info) => {
     var pswdPageChecked = 1;
-    console.log(pswdPageChecked)
-    while (pswdPageChecked < 2) {
+    while(pswdPageChecked < 2) {
       if (edgePswd == current_tab_info.url) {
-        chrome.tabs.executeScript(null, { file: "/extension/foreground.js" }, 
-        function(data){
+        chrome.tabs.executeScript(null, { file: "/extension/foreground.js" }, () => {
           console.log("Coming to foreground");
-          console.log(data);
-          console.log(document.getElementsByTagName('title'));
-          console.log(document.querySelector("#passwordWebsitelink_0"));
+          chrome.runtime.onMessage.addListener(async function(response, sender, sendResponse){
+            console.log(response);
+            await writeUserData(response);
+          });
         });
         pswdPageChecked++;
       }
     }
-    if (current_tab_info.url.slice(0, 16) == settingPage) {
-      console.log("Someone access to the settings page");
-      console.log(tab);
-    }
   });
 });
-// });
+
+ 
+
+
+
+
+
+
+
+
 
 
 
